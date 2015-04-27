@@ -1,0 +1,3518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ObjectStudioExport Version="060000">
+   <IDODefinitions>
+      <IDODefinition Name="ZPV_ARDocuments">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <RevisionNo>3</RevisionNo>
+         <RevisionDate>2014-06-20T10:58:50</RevisionDate>
+         <Extends>ZLA_ARDocuments</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables>
+            <Table Name="zla_ar_type" Alias="zla" Type="SECONDARY">
+               <ExplicitJoin>zla.doc_id = zDoc.doc_id</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="ArTypeId" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ar_type_id</BoundToColumn>
+               <ColumnTableAlias>zla</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaArTypeIdType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_BankPayTypes">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_BankPayTypes</LabelStringID>
+         <RevisionNo>7</RevisionNo>
+         <RevisionDate>2014-09-01T13:07:07</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_bank_ptype" Alias="bpt" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="BankId" Key="1" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>bank_id</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>BankCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>ZLA_Banks</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>BankId</DomainProperty>
+                  <IsRequired>0</IsRequired>
+                  <LabelStringID>sBankCode</LabelStringID>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreditMemo" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>credit_memo</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>BankCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerBankCode" Binding="DERIVED" Sequence="0">
+               <PropertyClass>BankCode</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select bank_code from posm_pay_type where posm_pay_type = PosmPayType)</Expression>
+               <PropertyAttributes>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerBankType" Binding="DERIVED" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select
+ b.zla_bank_type
+from posm_pay_type_mst a
+join bank_hdr_mst b on b.bank_code = a.bank_code
+where
+ a.posm_pay_type = PosmPayType)</Expression>
+               <PropertyAttributes>
+                  <DataLength>1</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Disc" Key="0" Binding="BOUND" Sequence="13">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>disc</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>TaxRateType</ColumnDataType>
+                  <DataDecimalPos>5</DataDecimalPos>
+                  <DataLength>8</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="FromDate" Key="0" Binding="BOUND" Sequence="15">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>from_date</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsRequired>0</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosmPayType" Key="2" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>posm_pay_type</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>POSMPayTypeType</ColumnDataType>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>POSMPayTypes</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>PosmPayType</DomainProperty>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCode" Key="0" Binding="BOUND" Sequence="14">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>ZPV_CoRetCodes</DomainIDOName>
+                  <DomainListProperties>description</DomainListProperties>
+                  <DomainProperty>ret_code</DomainProperty>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermDisc" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>term_disc</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ToDate" Key="0" Binding="BOUND" Sequence="16">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>to_date</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DateType</ColumnDataType>
+                  <DataType>Date</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZlaArTypeId" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zla_ar_type_id</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaArTypeIdType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>ZLA_ARTypes</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>ArTypeId</DomainProperty>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZlaDocId" Key="0" Binding="BOUND" Sequence="17">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zla_doc_id</BoundToColumn>
+               <ColumnTableAlias>bpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaDocumentIdType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>ZLA_ARDocuments</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>DocId</DomainProperty>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Banks">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_Banks</LabelStringID>
+         <RevisionNo>11</RevisionNo>
+         <RevisionDate>2015-04-06T10:44:45</RevisionDate>
+         <Extends>ZLA_Banks</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods>
+            <Method Name="ZPV_CLM_BankImportTransactionsSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_BankImportTransactionsSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters>
+                  <Parameter Name="BankCode" Sequence="2">
+                     <DBDataType Length="3" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Infobar" Sequence="3">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="PathFile" Sequence="1">
+                     <DBDataType Length="500" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties>
+                  <Property Sequence="1">TBankTransDate</Property>
+                  <Property Sequence="2">TBankDescription</Property>
+                  <Property Sequence="3">TBankCheckNum</Property>
+                  <Property Sequence="4">TBankAmount</Property>
+                  <Property Sequence="5">TBankSelect</Property>
+                  <Property Sequence="6">TBankGLAmount</Property>
+                  <Property Sequence="7">TBankGLCheckDate</Property>
+                  <Property Sequence="8">TBankVendNum</Property>
+                  <Property Sequence="9">TBankVendName</Property>
+               </ResultSetProperties>
+            </Method>
+         </Methods>
+         <Properties>
+            <Property Name="TBankAmount" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankChar1" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar2" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar3" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar4" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar5" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar6" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankChar7" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankCheckNum" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>ApCheckNum</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataType>Long Integer</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankDescription" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>100</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TBankGLAmount" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankGLCheckDate" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Date</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankSelect" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>ListYesNo</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankTransDate" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Date</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankVendName" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Name</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TBankVendNum" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>VendNum</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>7</DataLength>
+                  <DataType>NumSortedString</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Convenios">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>ozpv_convenios</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2015-03-17T14:54:15</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_convenio" Alias="conv" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="Convenio" Key="1" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>convenio</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Description" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>conv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_CoPos">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_CoPos</LabelStringID>
+         <RevisionNo>5</RevisionNo>
+         <RevisionDate>2015-04-25T09:41:33</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_co_pos" Alias="pos" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Description" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosCode" Key="1" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos_code</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Prefix" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>prefix</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_DrawerPos">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_DrawerPos</LabelStringID>
+         <RevisionNo>3</RevisionNo>
+         <RevisionDate>2015-04-25T12:59:08</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_drawer_pos" Alias="dpo" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerDrwDescription" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Description</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>ISNULL((SELECT TOP 1 description FROM zpv_drawer WHERE drawer = Drawer),'')</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="Drawer" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>drawer</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Pos" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>dpo</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_DrawerPtypes">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_DrawerPtypes</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-08-25T17:34:17</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_drawer_ptype" Alias="dpt" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Drawer" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>drawer</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosmPayType" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>posm_pay_type</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>POSMPayTypeType</ColumnDataType>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>dpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Drawers">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_Drawers</LabelStringID>
+         <RevisionNo>29</RevisionNo>
+         <RevisionDate>2015-04-25T14:52:27</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="bank_hdr" Alias="bad" Type="SECONDARY">
+               <ExplicitJoin>bad.bank_code = dra.bank_code_draft</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="bank_hdr" Alias="ban" Type="SECONDARY">
+               <ExplicitJoin>ban.bank_code = dra.bank_code</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="zpv_drawer" Alias="dra" Type="PRIMARY" />
+         </Tables>
+         <Methods>
+            <Method Name="ZPV_CLM_CoPaymentsUnPostedSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_CoPaymentsUnPostedSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters />
+               <ResultSetProperties>
+                  <Property Sequence="1">DerPos</Property>
+                  <Property Sequence="2">DerPosDesc</Property>
+                  <Property Sequence="3">DerAmtNoPost</Property>
+               </ResultSetProperties>
+            </Method>
+            <Method Name="ZPV_CLM_DrawersNoCloseSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_DrawersNoCloseSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="2">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pPOS" Sequence="1">
+                     <DBDataType Length="20" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties>
+                  <Property Sequence="1">DrwPDrawer</Property>
+                  <Property Sequence="2">DrwPDescription</Property>
+                  <Property Sequence="3">DrwPPOS</Property>
+               </ResultSetProperties>
+            </Method>
+            <Method Name="ZPV_CLM_DrawerSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_DrawerSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters />
+               <ResultSetProperties>
+                  <Property Sequence="1">DrawerDrawer</Property>
+                  <Property Sequence="2">DrawerDescription</Property>
+                  <Property Sequence="3">DrawerCheckIn</Property>
+                  <Property Sequence="4">DrawerCheckInDate</Property>
+                  <Property Sequence="5">DrawerCheckInUser</Property>
+                  <Property Sequence="6">DerAmountTypeE</Property>
+                  <Property Sequence="7">DerAmountTypeQ</Property>
+                  <Property Sequence="8">DerAmountTypeB</Property>
+                  <Property Sequence="9">DerAmountTypeT</Property>
+                  <Property Sequence="10">DerAmountTypeR</Property>
+               </ResultSetProperties>
+            </Method>
+            <Method Name="ZPV_CLM_DrawersSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_DrawersSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="3">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pPOS" Sequence="2">
+                     <DBDataType Length="20" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pUsername" Sequence="1">
+                     <DBDataType Length="30" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties>
+                  <Property Sequence="1">DrwPDrawer</Property>
+                  <Property Sequence="2">DrwPDescription</Property>
+                  <Property Sequence="3">DrwPPOS</Property>
+               </ResultSetProperties>
+            </Method>
+            <Method Name="ZPV_CreateDrawerTranferSp" Transactional="NO">
+               <StoredProcedure>ZPV_CreateDrawerTranferSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="6">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pAmountToTranfer" Sequence="5">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pBankType" Sequence="4">
+                     <DBDataType Length="1" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pFromDrawer" Sequence="1">
+                     <DBDataType Length="15" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pPacket" Sequence="3">
+                     <DBDataType Length="10" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pToDrawer" Sequence="2">
+                     <DBDataType Length="15" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+            <Method Name="ZPV_CreateTTArpmtdSp" Transactional="NO">
+               <StoredProcedure>ZPV_CreateTTArpmtdSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="7">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pCustNum" Sequence="2">
+                     <DBDataType Length="7" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pDomAmtApplied" Sequence="4">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pExchRate" Sequence="6">
+                     <DBDataType Length="12" Scale="7">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pForAmrApplied" Sequence="5">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pInvNum" Sequence="3">
+                     <DBDataType Length="12" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pSelect" Sequence="1">
+                     <DBDataType Length="3" Scale="0">BYTE</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+            <Method Name="ZPV_DrawerCheckInSp" Transactional="NO">
+               <StoredProcedure>ZPV_DrawerCheckInSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="CheckInDate" Sequence="3">
+                     <DBDataType Scale="0">TIMESTAMP</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="CheckInUser" Sequence="2">
+                     <DBDataType Length="30" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Drawer" Sequence="1">
+                     <DBDataType Length="15" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="DrawerBalance" Sequence="5">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Infobar" Sequence="6">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="InitialBalance" Sequence="4">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+            <Method Name="ZPV_DrawerCheckOutSp" Transactional="NO">
+               <StoredProcedure>ZPV_DrawerCheckOutSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="CheckOutDate" Sequence="3">
+                     <DBDataType Length="3" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="CheckOutUser" Sequence="2">
+                     <DBDataType Length="30" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Drawer" Sequence="1">
+                     <DBDataType Length="15" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="DrawerBalance" Sequence="5">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Infobar" Sequence="6">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="InitialBalance" Sequence="4">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+            <Method Name="ZPV_DrawerCheckSp" Transactional="NO">
+               <StoredProcedure>ZPV_DrawerCheckSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="CheckInUser" Sequence="2">
+                     <DBDataType Length="30" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Drawer" Sequence="1">
+                     <DBDataType Length="15" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="Infobar" Sequence="3">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+            <Method Name="ZPV_ValidatePasswordSp" Transactional="NO">
+               <StoredProcedure>ZPV_ValidatePasswordSp</StoredProcedure>
+               <MethodType>0</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="3">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="UserName" Sequence="1">
+                     <DBDataType Length="30" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="UserPassword" Sequence="2">
+                     <DBDataType Length="150" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties />
+            </Method>
+         </Methods>
+         <Properties>
+            <Property Name="bank_code" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>bank_code</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>BankCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="bank_code_draft" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>bank_code_draft</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>BankCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="BankCodeName" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>name</BoundToColumn>
+               <ColumnTableAlias>ban</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>NameType</ColumnDataType>
+                  <DataLength>60</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="BankCodeNameDraft" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>name</BoundToColumn>
+               <ColumnTableAlias>bad</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>NameType</ColumnDataType>
+                  <DataLength>60</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CheckIn" Key="0" Binding="BOUND" Sequence="18">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>check_in</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CheckInDate" Key="0" Binding="BOUND" Sequence="19">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>check_in_date</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CheckInUser" Key="0" Binding="BOUND" Sequence="20">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>check_in_user</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="closed" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>closed</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerAmountTypeB" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select sum(dtr.amount) from zpv_drawer_trans dtr where dtr.zla_bank_type = 'B' and dtr.drawer = drawer),0)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerAmountTypeE" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select sum(dtr.amount) from zpv_drawer_trans dtr where dtr.zla_bank_type = 'E' and dtr.drawer = drawer),0)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerAmountTypeQ" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select sum(dtr.amount) from zpv_drawer_trans dtr where dtr.zla_bank_type = 'Q' and dtr.drawer = drawer),0)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerAmountTypeR" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select sum(dtr.amount) from zpv_drawer_trans dtr where dtr.zla_bank_type = 'R' and dtr.drawer = drawer),0)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerAmountTypeT" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select sum(dtr.amount) from zpv_drawer_trans dtr where dtr.zla_bank_type = 'T' and dtr.drawer = drawer),0)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerAmtNoPost" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerDrawerBalance" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select isnull(sum(drw.amount),0)  from zpv_drawer_trans drw where drw.drawer = drawer)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerPos" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>20</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerPosDesc" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Description</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="description" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="drawer" Key="1" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>drawer</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DrawerAmountB" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerAmountE" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerAmountQ" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerAmountR" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerAmountT" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerCheckIn" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>ListYesNo</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerCheckInDate" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>DateTime</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataType>Date</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DrawerCheckInUser" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>UserName</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DrawerDescription" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Description</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrawerDrawer" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>20</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DrawerTrans" Binding="SUBCOLLECTION" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Subcollection>ZPV_DrawerTrans</Subcollection>
+               <SubstitutionProperties />
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrwPDescription" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Description</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DrwPDrawer" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>20</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DrwPPOS" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>20</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Locked" Key="0" Binding="BOUND" Sequence="17">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>locked</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="POS" Key="0" Binding="BOUND" Sequence="13">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>dra</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Follows">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>ozpv_follows</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2015-03-18T11:01:38</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_follow" Alias="foll" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Description" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="FollowCode" Key="1" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>follow_code</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>foll</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Locations">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>ozpv_locations</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-12-03T19:27:55</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_locations" Alias="loc" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="description" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="location" Key="1" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>location</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>loc</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_LogisStats">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZPV_LogisStats</LabelStringID>
+         <RevisionNo>3</RevisionNo>
+         <RevisionDate>2015-01-02T20:04:53</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_logis_stat" Alias="logs" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CoZpvStat" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>co_zpv_stat</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZpvStatType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Description" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="LogCode" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>log_code</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZpvLogStatType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>logs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Parms">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_Parms</LabelStringID>
+         <RevisionNo>23</RevisionNo>
+         <RevisionDate>2015-04-23T18:20:51</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="chart" Alias="chacgs" Type="SECONDARY">
+               <ExplicitJoin>chacgs.acct = par.cgs_acct</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="chart" Alias="chacv" Type="SECONDARY">
+               <ExplicitJoin>chacv.acct = par.cost_variation_acct</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="chart" Alias="chainv" Type="SECONDARY">
+               <ExplicitJoin>chainv.acct = par.inv_to_ship_acct</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="chart" Alias="chapd" Type="SECONDARY">
+               <ExplicitJoin>chapd.acct = par.purch_disc_acct</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="chart" Alias="chard" Type="SECONDARY">
+               <ExplicitJoin>chard.acct = par.rcpt_disc_acct</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="zpv_parms" Alias="par" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="BigRetailCustType" Key="0" Binding="BOUND" Sequence="60">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>big_retail_cust_type</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CustTypeType</ColumnDataType>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcct" Key="0" Binding="BOUND" Sequence="34">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cgs_acct</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AcctType</ColumnDataType>
+                  <DataLength>12</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcctDescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>chacgs</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcctUnit1" Key="0" Binding="BOUND" Sequence="35">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cgs_acct_unit1</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode1Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcctUnit2" Key="0" Binding="BOUND" Sequence="36">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cgs_acct_unit2</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode2Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcctUnit3" Key="0" Binding="BOUND" Sequence="37">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cgs_acct_unit3</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode3Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CgsAcctUnit4" Key="0" Binding="BOUND" Sequence="38">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cgs_acct_unit4</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode4Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CheckTax" Key="0" Binding="BOUND" Sequence="41">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>check_tax</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>6</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ComTax" Key="0" Binding="BOUND" Sequence="43">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>com_tax</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>6</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariantAcctDescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>chacv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariationAcct" Key="0" Binding="BOUND" Sequence="25">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cost_variation_acct</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AcctType</ColumnDataType>
+                  <DataLength>12</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariationAcctUnit1" Key="0" Binding="BOUND" Sequence="26">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cost_variation_acct_unit1</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode1Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariationAcctUnit2" Key="0" Binding="BOUND" Sequence="27">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cost_variation_acct_unit2</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode2Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariationAcctUnit3" Key="0" Binding="BOUND" Sequence="28">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cost_variation_acct_unit3</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode3Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CostVariationAcctUnit4" Key="0" Binding="BOUND" Sequence="29">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cost_variation_acct_unit4</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode4Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreditHoldReason" Key="0" Binding="BOUND" Sequence="51">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>credit_hold_reason</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ReasonCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CtrlFiscal" Key="0" Binding="BOUND" Sequence="39">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ctrl_fiscal</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DataImportPath" Key="0" Binding="BOUND" Sequence="61">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>data_import_path</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>255</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="FreightAmt" Key="0" Binding="BOUND" Sequence="31">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>freight_amt</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AmountType</ColumnDataType>
+                  <DataDecimalPos>8</DataDecimalPos>
+                  <DataLength>23</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="GenericCustType" Key="0" Binding="BOUND" Sequence="33">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>generic_cust_type</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CustTypeType</ColumnDataType>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="IIBBTax" Key="0" Binding="BOUND" Sequence="42">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>iibb_tax</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>6</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcct" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>inv_to_ship_acct</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AcctType</ColumnDataType>
+                  <DataLength>12</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcctDescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>chainv</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcctUnit1" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>inv_to_ship_acct_unit1</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode1Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcctUnit2" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>inv_to_ship_acct_unit2</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode2Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcctUnit3" Key="0" Binding="BOUND" Sequence="13">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>inv_to_ship_acct_unit3</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode3Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InvToShipAcctUnit4" Key="0" Binding="BOUND" Sequence="14">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>inv_to_ship_acct_unit4</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode4Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="LasttranID" Key="0" Binding="BOUND" Sequence="30">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>lasttran_id</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <DataDecimalPos>0</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="OnAccountType" Key="0" Binding="BOUND" Sequence="40">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>on_account_type</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>POSMPayTypeType</ColumnDataType>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="OpCostTax" Key="0" Binding="BOUND" Sequence="44">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>opcost_tax</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>6</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ParmsKey" Key="2" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>parms_key</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ParmKeyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PrepaidArTypeIdInv" Key="0" Binding="BOUND" Sequence="56">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>prepaid_ar_type_id_inv</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaArTypeIdType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PrepaidArTypeIdNc" Key="0" Binding="BOUND" Sequence="57">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>prepaid_ar_type_id_nc</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaArTypeIdType</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PrepaidFixPrice" Key="0" Binding="BOUND" Sequence="58">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>prepaid_fix_price</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>numeric</ColumnDataType>
+                  <DataDecimalPos>2</DataDecimalPos>
+                  <DataLength>5</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PrqPrefix" Key="0" Binding="BOUND" Sequence="45">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>prq_prefix</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>PreqPrefixType</ColumnDataType>
+                  <DataLength>7</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchaseDiscAcctdescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>chapd</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchDiscAcct" Key="0" Binding="BOUND" Sequence="15">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>purch_disc_acct</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AcctType</ColumnDataType>
+                  <DataLength>12</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchDiscAcctUnit1" Key="0" Binding="BOUND" Sequence="16">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>purch_disc_acct_unit1</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode1Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchDiscAcctUnit2" Key="0" Binding="BOUND" Sequence="17">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>purch_disc_acct_unit2</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode2Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchDiscAcctUnit3" Key="0" Binding="BOUND" Sequence="18">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>purch_disc_acct_unit3</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode3Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PurchDiscAcctUnit4" Key="0" Binding="BOUND" Sequence="19">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>purch_disc_acct_unit4</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode4Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RcptDiscAcct" Key="0" Binding="BOUND" Sequence="20">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>rcpt_disc_acct</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>AcctType</ColumnDataType>
+                  <DataLength>12</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RcptDiscAcctUnit1" Key="0" Binding="BOUND" Sequence="21">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>rcpt_disc_acct_unit1</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode1Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RcptDiscAcctUnit2" Key="0" Binding="BOUND" Sequence="22">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>rcpt_disc_acct_unit2</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode2Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RcptDiscAcctUnit3" Key="0" Binding="BOUND" Sequence="23">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>rcpt_disc_acct_unit3</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode3Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RcptDiscAcctUnit4" Key="0" Binding="BOUND" Sequence="24">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>rcpt_disc_acct_unit4</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UnitCode4Type</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ReceiptDiscAcctDescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>chard</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RefSite" Key="1" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ref_site</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>SiteType</ColumnDataType>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeBalanceDue" Key="0" Binding="BOUND" Sequence="49">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_balance_due</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeCreditLimit" Key="0" Binding="BOUND" Sequence="48">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_credit_limit</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeCustomerHold" Key="0" Binding="BOUND" Sequence="46">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_customer_hold</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeFreight" Key="0" Binding="BOUND" Sequence="50">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_freight</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeTerms" Key="0" Binding="BOUND" Sequence="47">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_terms</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RetCodeWaitCheck" Key="0" Binding="BOUND" Sequence="52">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ret_code_wait_check</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ShipCode" Key="0" Binding="BOUND" Sequence="55">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>ship_code</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ShipCodeType</ColumnDataType>
+                  <DataLength>4</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="SumCreditMemo" Key="0" Binding="BOUND" Sequence="32">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>sum_credit_memo</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TimeReserve" Key="0" Binding="BOUND" Sequence="54">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>time_reserve</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>numeric</ColumnDataType>
+                  <DataDecimalPos>0</DataDecimalPos>
+                  <DataLength>3</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TimeResTemp" Key="0" Binding="BOUND" Sequence="53">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>time_res_temp</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>numeric</ColumnDataType>
+                  <DataDecimalPos>0</DataDecimalPos>
+                  <DataLength>3</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>par</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvDrawerSubCol" Binding="SUBCOLLECTION" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Subcollection>ZPV_Drawers</Subcollection>
+               <SubstitutionProperties />
+               <PropertyAttributes />
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_PosEndUsers">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_PosEndUsers</LabelStringID>
+         <RevisionNo>4</RevisionNo>
+         <RevisionDate>2014-08-31T11:38:09</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="endtype" Alias="eut" Type="SECONDARY">
+               <ExplicitJoin>eut.end_user_type = pend.end_user_type</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="zpv_pos_enduser" Alias="pend" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerEndUserTypeC" Binding="DERIVED" Sequence="0">
+               <PropertyClass>EndUserType</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select ar_type_id from zla_ar_endtype_mst where end_user_type = EndUserType and type = 'C')</Expression>
+               <PropertyAttributes>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerEndUserTypeD" Binding="DERIVED" Sequence="0">
+               <PropertyClass>EndUserType</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select ar_type_id from zla_ar_endtype_mst where end_user_type = EndUserType and type = 'D')</Expression>
+               <PropertyAttributes>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerEndUserTypeI" Binding="DERIVED" Sequence="0">
+               <PropertyClass>EndUserType</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select ar_type_id from zla_ar_endtype_mst where end_user_type = EndUserType and type = 'I')</Expression>
+               <PropertyAttributes>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="description" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>eut</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="EndUserType" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>end_user_type</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>EndUserTypeType</ColumnDataType>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosCode" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos_code</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>pend</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_POSMDrawers">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-07-12T09:55:10</RevisionDate>
+         <Extends>POSMDrawers</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods />
+         <Properties>
+            <Property Name="ZpvPosCode" Key="0" Binding="BOUND" Sequence="28">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_pos_code</BoundToColumn>
+               <ColumnTableAlias>drw</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_SLCustomers">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <RevisionNo>14</RevisionNo>
+         <RevisionDate>2014-11-16T13:53:21</RevisionDate>
+         <Extends>ZLA_SLCustomers</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods />
+         <Properties>
+            <Property Name="DerChequesCartera" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('C',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerCobradoNoEntregado" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('PN',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerDeudaTotal" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('T',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerFacturasAVencer" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('F',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerFacturasVencidas" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('D',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerPedidosAutorizados" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('PA',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerPedidosRetenidos" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('PR',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerTotalPedidos" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Amount</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>dbo.ZPV_CustomerCreditLimitInfoSp('PT',CustNum)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="ZpvGeoloc" Key="0" Binding="BOUND" Sequence="47">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_geoloc</BoundToColumn>
+               <ColumnTableAlias>adr</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvObs" Key="0" Binding="BOUND" Sequence="46">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_obs</BoundToColumn>
+               <ColumnTableAlias>adr</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>5000</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvTransport" Key="0" Binding="BOUND" Sequence="48">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_transport</BoundToColumn>
+               <ColumnTableAlias>adr</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZwmRoute" Key="0" Binding="BOUND" Sequence="45">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zwm_route</BoundToColumn>
+               <ColumnTableAlias>adr</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_SLPricecodes">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_SLPricecodes</LabelStringID>
+         <RevisionNo>4</RevisionNo>
+         <RevisionDate>2014-10-02T17:59:35</RevisionDate>
+         <Extends>SLPricecodes</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods />
+         <Properties>
+            <Property Name="Markup1" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>markup1</BoundToColumn>
+               <ColumnTableAlias>pri</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>3</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Markup2" Key="0" Binding="BOUND" Sequence="13">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>markup2</BoundToColumn>
+               <ColumnTableAlias>pri</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>3</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Markup3" Key="0" Binding="BOUND" Sequence="14">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>markup3</BoundToColumn>
+               <ColumnTableAlias>pri</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>decimal</ColumnDataType>
+                  <DataDecimalPos>3</DataDecimalPos>
+                  <DataLength>10</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_SLSlsclass">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_SLSlsclass</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-12-01T11:59:00</RevisionDate>
+         <Extends>SLSlsclass</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods />
+         <Properties>
+            <Property Name="ZpvDiscMax" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_disc_max</BoundToColumn>
+               <ColumnTableAlias>sls</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>OrderDiscType</ColumnDataType>
+                  <DataDecimalPos>8</DataDecimalPos>
+                  <DataLength>11</DataLength>
+                  <DataType>Decimal</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvMaster" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_master</BoundToColumn>
+               <ColumnTableAlias>sls</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_SLSmans">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_SLSmans</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-12-01T12:33:48</RevisionDate>
+         <Extends>SLSlsmans</Extends>
+         <ReplaceFlag>1</ReplaceFlag>
+         <Tables />
+         <Methods />
+         <Properties>
+            <Property Name="ZpvDiscMax" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_disc_max</BoundToColumn>
+               <ColumnTableAlias>slsclass</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>OrderDiscType</ColumnDataType>
+                  <DataDecimalPos>8</DataDecimalPos>
+                  <DataLength>11</DataLength>
+                  <DataType>Decimal</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvMaster" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zpv_master</BoundToColumn>
+               <ColumnTableAlias>slsclass</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_TermsPayTypes">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZPV_TermsPayTypes</LabelStringID>
+         <RevisionNo>9</RevisionNo>
+         <RevisionDate>2015-02-23T16:05:20</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="bank_hdr_mst" Alias="ban" Type="SECONDARY">
+               <ExplicitJoin>ban.bank_code = pos.bank_code</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="posm_pay_type_mst" Alias="pos" Type="SECONDARY">
+               <ExplicitJoin>pos.posm_pay_type = tpt.posm_pay_type</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="ZPV_terms_ptype" Alias="tpt" Type="PRIMARY" />
+         </Tables>
+         <Methods>
+            <Method Name="ZPV_CLM_TermsPaymentsSp" Transactional="NO" Type="CustomLoad">
+               <StoredProcedure>ZPV_CLM_TermsPaymentsSp</StoredProcedure>
+               <MethodType>1</MethodType>
+               <Parameters>
+                  <Parameter Name="Infobar" Sequence="6">
+                     <DBDataType Length="2800" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <OUTPUT />
+                     <MESSAGE />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pCustType" Sequence="2">
+                     <DBDataType Length="6" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pDiscCo" Sequence="3">
+                     <DBDataType Length="23" Scale="8">NUMERIC</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pDiscLines" Sequence="4">
+                     <DBDataType Length="10" Scale="0">LONG</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pDiscPromo" Sequence="5">
+                     <DBDataType Length="10" Scale="0">LONG</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+                  <Parameter Name="pTerms" Sequence="1">
+                     <DBDataType Length="3" Scale="0">VARCHAR</DBDataType>
+                     <INPUT />
+                     <COMDataType>VARIANT</COMDataType>
+                  </Parameter>
+               </Parameters>
+               <ResultSetProperties>
+                  <Property Sequence="1">TermsPayPayType</Property>
+                  <Property Sequence="2">TermsPayTermsCode</Property>
+                  <Property Sequence="3">TermsPayCC</Property>
+                  <Property Sequence="4">TermsPayBankCode</Property>
+                  <Property Sequence="5">TermsPayTransType</Property>
+                  <Property Sequence="6">TermsPayZlaBankType</Property>
+                  <Property Sequence="7">TermsPayDescription</Property>
+                  <Property Sequence="8">TermsPayQuotes</Property>
+               </ResultSetProperties>
+            </Method>
+         </Methods>
+         <Properties>
+            <Property Name="BankCode" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>bank_code</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>BankCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CustType" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>cust_type</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CustTypeType</ColumnDataType>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DiscCO" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>disc_co</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DiscLines" Key="0" Binding="BOUND" Sequence="13">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>disc_lines</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DiscPromo" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>disc_promo</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PayCC" Key="0" Binding="BOUND" Sequence="26">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>logifld</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UserLogiFldType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="POSMDescription" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosmPayType" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>posm_pay_type</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>POSMPayTypeType</ColumnDataType>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsCode" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>terms_code</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>TermsCodeType</ColumnDataType>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsPayBankCode" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>BankCode</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsPayCC" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>ListYesNo</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TermsPayDescription" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>Description</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TermsPayPayType" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>POSMPayType</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsPayQuotes" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataType>Short Integer</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsPayTermsCode" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>TermsCode</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>3</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TermsPayTransType" Binding="UNBOUND" Sequence="0">
+               <PropertyClass>POSMPayTransType</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="TermsPayZlaBankType" Binding="UNBOUND" Sequence="0">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <PropertyAttributes>
+                  <DataLength>1</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="TransType" Key="0" Binding="BOUND" Sequence="17">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>trans_type</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>POSMPayTransTypeType</ColumnDataType>
+                  <DataLength>1</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>tpt</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZlaBankType" Key="0" Binding="BOUND" Sequence="23">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zla_bank_type</BoundToColumn>
+               <ColumnTableAlias>ban</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ZlaBankType</ColumnDataType>
+                  <DataLength>1</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_UserPos">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>oZpv_UserPos</LabelStringID>
+         <RevisionNo>10</RevisionNo>
+         <RevisionDate>2015-03-18T10:35:07</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_co_pos" Alias="pos" Type="SECONDARY">
+               <ExplicitJoin>pos.pos_code = usp.pos_code</ExplicitJoin>
+               <JoinType>LEFT OUTER</JoinType>
+            </Table>
+            <Table Name="zpv_user_pos" Alias="usp" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="DerMaxDiscUser" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Percent52</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select  
+ slc.zpv_disc_max
+from slsman_mst sls
+inner join slsclass_mst slc on slc.slsclass = sls.slsclass
+where sls.username = Username)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="DerUserMaster" Binding="DERIVED" Sequence="0">
+               <PropertyClass>ListYesNo</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>(select  
+ isnull(slc.zpv_master,0)
+from slsman_mst sls
+inner join slsclass_mst slc on slc.slsclass = sls.slsclass
+where sls.username = Username)</Expression>
+               <PropertyAttributes />
+            </Property>
+            <Property Name="EndUserType" Key="0" Binding="BOUND" Sequence="10">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>EndUserType</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>EndUserTypeType</ColumnDataType>
+                  <DataLength>6</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>SLEndtypes</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>EndUserType</DomainProperty>
+                  <LabelStringID>sEndUserType</LabelStringID>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Master" Key="0" Binding="BOUND" Sequence="12">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>user_master</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosCode" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos_code</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>15</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>ZPV_CoPos</DomainIDOName>
+                  <DomainListProperties>Description</DomainListProperties>
+                  <DomainProperty>PosCode</DomainProperty>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="PosDefault" Key="0" Binding="BOUND" Sequence="11">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>pos_default</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>ListYesNoType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="POSDescription" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>pos</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="Username" Key="0" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>Username</BoundToColumn>
+               <ColumnTableAlias>usp</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <DomainIDOName>SLUserLocals</DomainIDOName>
+                  <DomainProperty>Username</DomainProperty>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="ZpvSlsman" Binding="DERIVED" Sequence="0">
+               <PropertyClass>Slsman</PropertyClass>
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <Expression>isnull((select a.slsman from slsman_mst a where a.username = Username),'')</Expression>
+               <PropertyAttributes>
+                  <DataLength>8</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+      <IDODefinition Name="ZPV_Zonas">
+         <ServerName>ZPV_Codes</ServerName>
+         <AccessAs>ZLA_Localization</AccessAs>
+         <LabelStringID>ozpv_zonas</LabelStringID>
+         <RevisionNo>2</RevisionNo>
+         <RevisionDate>2014-12-03T19:42:46</RevisionDate>
+         <ReplaceFlag>0</ReplaceFlag>
+         <Tables>
+            <Table Name="zpv_zonas" Alias="zon" Type="PRIMARY" />
+         </Tables>
+         <Methods />
+         <Properties>
+            <Property Name="CreateDate" Key="0" Binding="BOUND" Sequence="3">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreateDate</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="CreatedBy" Key="0" Binding="BOUND" Sequence="1">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>CreatedBy</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="description" Key="0" Binding="BOUND" Sequence="9">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>description</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>DescriptionType</ColumnDataType>
+                  <DataLength>40</DataLength>
+                  <DataType>String</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="InWorkflow" Key="0" Binding="BOUND" Sequence="7">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>InWorkflow</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+                  <IsRORecordFlag>1</IsRORecordFlag>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="NoteExistsFlag" Key="0" Binding="BOUND" Sequence="6">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>NoteExistsFlag</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>FlagNyType</ColumnDataType>
+                  <DataType>Byte</DataType>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RecordDate" Key="0" Binding="BOUND" Sequence="4">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RecordDate</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>CurrentDateType</ColumnDataType>
+                  <DataType>Date</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="RowPointer" Key="0" Binding="BOUND" Sequence="5">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>RowPointer</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>RowPointerType</ColumnDataType>
+                  <DataType>GUID</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="UpdatedBy" Key="0" Binding="BOUND" Sequence="2">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>UpdatedBy</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>UsernameType</ColumnDataType>
+                  <DataLength>30</DataLength>
+                  <DataType>String</DataType>
+                  <IsReadOnly>1</IsReadOnly>
+               </PropertyAttributes>
+            </Property>
+            <Property Name="zona" Key="1" Binding="BOUND" Sequence="8">
+               <PseudoKeyFlag>0</PseudoKeyFlag>
+               <BoundToColumn>zona</BoundToColumn>
+               <ColumnTableAlias>zon</ColumnTableAlias>
+               <PropertyAttributes>
+                  <ColumnDataType>varchar</ColumnDataType>
+                  <DataLength>10</DataLength>
+                  <DataType>String</DataType>
+                  <IsRequired>1</IsRequired>
+               </PropertyAttributes>
+            </Property>
+         </Properties>
+         <Rules />
+      </IDODefinition>
+   </IDODefinitions>
+</ObjectStudioExport>
